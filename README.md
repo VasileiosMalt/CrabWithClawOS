@@ -1,6 +1,8 @@
 # 🦀 CrabWithClawOS — Complete Debian-Based Distribution Blueprint
 
-<img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/CrabWithClawOS.png" alt="CrabWithClawOS" width="800" height="450">
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/CrabWithClawOS.png" alt="CrabWithClawOS" width="800" height="450">
+</p>
 
 A custom **Debian Bookworm**-based Linux distribution engineered for AI CLI coding agents, terminal-based development workflows, free LLM provider orchestration, and multimedia CLI tools.
 
