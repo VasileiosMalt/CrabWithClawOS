@@ -1,4 +1,4 @@
-# 🦀 CrabWithClawOS v2 — Complete Debian-Based Distribution Blueprint
+# 🦀 CrabWithClawOS — Complete Debian-Based Distribution Blueprint
 
 A custom **Debian Bookworm**-based Linux distribution engineered for AI CLI coding agents, terminal-based development workflows, free LLM provider orchestration, and multimedia CLI tools.
 
@@ -8,7 +8,7 @@ A custom **Debian Bookworm**-based Linux distribution engineered for AI CLI codi
 
 ### Hardware Requirements
 
-CrabWithClawOS targets AI-focused workloads, so requirements exceed standard Debian minimums.[^1][^2]
+CrabWithClawOS targets AI-focused workloads, so requirements exceed standard [Debian minimums](https://invgate.com/itdb/debian-12-bookworm).
 
 | Tier | CPU | RAM | Storage | GPU | Use Case |
 |------|-----|-----|---------|-----|----------|
@@ -20,7 +20,7 @@ CrabWithClawOS targets AI-focused workloads, so requirements exceed standard Deb
 
 | Component | Space Required |
 |-----------|---------------|
-| Debian base system + kernel + firmware | ~4 GB [^2] |
+| [Debian base system](https://www.debian.org/releases/bookworm/amd64/ch02s05.en.html) + kernel + firmware | ~4 GB |
 | Desktop environment (Hyprland/Sway + Waybar) | ~1 GB |
 | Terminal stack (Ghostty, Kitty, Zellij, tmux, Zsh, Neovim) | ~500 MB |
 | All AI CLI tools (Claude Code, Aider, OpenCode, Gemini CLI, etc.) | ~3 GB |
@@ -45,7 +45,7 @@ CrabWithClawOS targets AI-focused workloads, so requirements exceed standard Deb
 
 ## 2. Build System: Debian `live-build`
 
-CrabWithClawOS is built using Debian's official `live-build` toolchain instead of archiso:[^3][^4][^5]
+CrabWithClawOS is built using Debian's official [live-build](https://live-team.pages.debian.net/live-manual/html/live-manual.en.html) toolchain:
 
 ```bash
 sudo apt install live-build debootstrap squashfs-tools xorriso grub-efi-amd64-bin
@@ -59,10 +59,10 @@ lb config -d bookworm \
   --bootappend-live "boot=live components username=crab"
 ```
 
-Package lists go in `config/package-lists/*.list.chroot`, dotfiles and configs in `config/includes.chroot_after_packages/etc/skel/`, and post-install scripts in `config/hooks/`.[^4][^3]
+Package lists go in `config/package-lists/*.list.chroot`, dotfiles and configs in `config/includes.chroot_after_packages/etc/skel/`, and [post-install scripts](https://debian-live-config.readthedocs.io/en/latest/custom.html) in `config/hooks/`.
 
 ### Installer
-- **Calamares** — GUI installer branded for CrabWithClawOS (crab+claw logo, slideshow explaining the AI tool stack)[^6]
+- **[Calamares](https://habr.com/en/articles/654755/)** — GUI installer branded for CrabWithClawOS (crab+claw logo, slideshow explaining the AI tool stack)
 - **First-boot wizard**: Select GPU vendor → install appropriate drivers → select AI tool preset (Minimal / Full / Local-only) → configure API keys via encrypted keyring
 
 ***
@@ -73,32 +73,42 @@ Package lists go in `config/package-lists/*.list.chroot`, dotfiles and configs i
 
 | Tool | License | Key Strength | Install |
 |------|---------|-------------|---------|
-| **Claude Code** | Proprietary | Best autonomous agent, MCP, skills, context compaction | `npm i -g @anthropic-ai/claude-code` [^7][^8] |
-| **Gemini CLI** | Free | 1M token context, free tier (1000 req/day), huge monorepo | `npm i -g @google/gemini-cli` [^7] |
-| **Aider** | Apache 2.0 | 100+ model support, deepest git integration, 39K+ stars | `pipx install aider-chat` [^7] |
-| **OpenCode** | Open Source | LSP integration, 75+ providers, multi-session, 95K+ stars | `curl -fsSL https://opencode.ai/install \| bash` [^9][^10] |
-| **OpenAI Codex CLI** | Open Source | Rust-based, 3-tier permissions, ChatGPT integration | `npm i -g @openai/codex` [^7] |
-| **OpenClaw** | Open Source | Routes Claude + Gemini, gateway architecture, TUI + Web | `curl -fsSL https://openclaw.ai/install.sh \| bash` [^11][^12] |
-| **Amp (Sourcegraph)** | Freemium | Sub-agent orchestration, deep reasoning mode | `npm i -g @sourcegraph/amp` [^13] |
+| **[Claude Code](https://code.claude.com/docs/en/skills)** | Proprietary | Best autonomous agent, MCP, skills, context compaction | `npm i -g @anthropic-ai/claude-code` |
+| **[Gemini CLI](https://awesomeagents.ai/tools/best-ai-coding-cli-tools-2026/)** | Free | 1M token context, free tier (1000 req/day), huge monorepo | `npm i -g @google/gemini-cli` |
+| **[Aider](https://awesomeagents.ai/tools/best-ai-coding-cli-tools-2026/)** | Apache 2.0 | 100+ model support, deepest git integration, 39K+ stars | `pipx install aider-chat` |
+| **[OpenCode](https://www.freecodecamp.org/news/integrate-ai-into-your-terminal-using-opencode/)** | Open Source | LSP integration, 75+ providers, multi-session, 95K+ stars | `curl -fsSL https://opencode.ai/install \| bash` |
+| **[OpenAI Codex CLI](https://awesomeagents.ai/tools/best-ai-coding-cli-tools-2026/)** | Open Source | Rust-based, 3-tier permissions, ChatGPT integration | `npm i -g @openai/codex` |
+| **[OpenClaw](https://vertu.com/ai-tools/the-ultimate-guide-setting-up-openclaw-with-claude-code-and-gemini-3-pro/)** | Open Source | Routes Claude + Gemini, gateway architecture, TUI + Web | `curl -fsSL https://openclaw.ai/install.sh \| bash` |
+| **[Amp (Sourcegraph)](https://www.secondtalent.com/resources/amp-ai-review/)** | Freemium | Sub-agent orchestration, deep reasoning mode | `npm i -g @sourcegraph/amp` |
 
 ### Tier 2 — Additional AI Agents (via `crab-install`)
 
 | Tool | Purpose |
 |------|---------|
-| **Goose (Block)** | Autonomous task agent, MCP-native, Ollama support [^14][^15] |
-| **Kilo Code CLI** | Plan-act-observe-fix loop, 400+ models, audit logging [^16][^17] |
-| **Cline** | Autonomous coding agent, 48K+ stars, executes commands [^18] |
-| **GitHub Copilot CLI** | GitHub-native shell completions [^19] |
-| **ForgeCode** | In-terminal pair programmer [^18] |
+| **[Goose (Block)](https://hyperdev.matsuoka.com/p/goose-an-open-source-take-on-vibe)** | Autonomous task agent, MCP-native, Ollama support |
+| **[Kilo Code CLI](https://www.datastudios.org/post/kilo-code-the-open-source-agent-that-s-redefining-ai-coding-assistants)** | Plan-act-observe-fix loop, 400+ models, audit logging |
+| **[Cline](https://dev.to/forgecode/top-10-open-source-cli-coding-agents-you-should-be-using-in-2025-with-links-244m)** | Autonomous coding agent, 48K+ stars, executes commands |
+| **[GitHub Copilot CLI](https://vertu.com/ar/ai-tools/top-10-open-source-ai-code-editors-for-developers-2025/)** | GitHub-native shell completions |
+| **ForgeCode** | In-terminal pair programmer |
 
 ### Tier 3 — MCP & Local Inference
 
 | Tool | Purpose |
 |------|---------|
-| **MCP Tools CLI** | Discover, call, manage MCP servers from terminal [^20] |
-| **Ollama** | Local LLM server (llama3, codellama, deepseek-coder) [^21][^22] |
+| **[MCP Tools CLI](https://github.com/f/mcptools)** | Discover, call, manage MCP servers from terminal |
+| **[Ollama](https://docs.ollama.com/linux)** | Local LLM server (llama3, codellama, deepseek-coder) |
 | **Open WebUI** | Browser UI for Ollama models |
 | **LiteLLM Proxy** | Unified API proxy for 100+ LLM providers |
+
+### Tier 4 — AI Pipeline & Research Tools
+
+| Tool | Purpose |
+|------|---------|
+| **HuggingFace CLI** | Download models, datasets, push to HF Hub from terminal |
+| **llm (Simon Willison)** | Universal CLI to call 50+ LLM APIs, log queries to SQLite |
+| **fabric** | AI prompt pipeline framework (e.g., `echo text | fabric --pattern summarize`) |
+| **sgpt (shell-gpt)** | ChatGPT-like CLI for shell commands and code generation |
+| **Jupyter CLI** | Launch notebooks for AI experiments from terminal |
 
 ***
 
@@ -141,13 +151,13 @@ All tools listed above support OpenAI-compatible APIs, meaning they work with ev
 
 | AI Tool | Supports Free Providers Via |
 |---------|---------------------------|
-| **Aider** | Native support for 100+ providers including all listed above via `--model` flag [^7] |
-| **OpenCode** | 75+ providers natively, OpenAI-compatible endpoints [^9][^10] |
-| **Gemini CLI** | Google AI Studio directly (free tier) [^7] |
+| **[Aider](https://awesomeagents.ai/tools/best-ai-coding-cli-tools-2026/)** | Native support for 100+ providers including all listed above via `--model` flag |
+| **[OpenCode](https://www.freecodecamp.org/news/integrate-ai-into-your-terminal-using-opencode/)** | 75+ providers natively, OpenAI-compatible endpoints |
+| **[Gemini CLI](https://awesomeagents.ai/tools/best-ai-coding-cli-tools-2026/)** | Google AI Studio directly (free tier) |
 | **Claude Code** | Anthropic API (paid), but can route via OpenRouter free models for non-Claude tasks |
-| **Goose** | Ollama locally + any OpenAI-compatible endpoint [^15] |
-| **Kilo Code** | 400+ models, all OpenAI-compatible providers [^16] |
-| **OpenClaw** | Routes between Claude + Gemini natively [^11] |
+| **[Goose](https://hyperdev.matsuoka.com/p/goose-an-open-source-take-on-vibe)** | Ollama locally + any OpenAI-compatible endpoint |
+| **[Kilo Code](https://www.datastudios.org/post/kilo-code-the-open-source-agent-that-s-redefining-ai-coding-assistants)** | 400+ models, all OpenAI-compatible providers |
+| **[OpenClaw](https://vertu.com/ai-tools/the-ultimate-guide-setting-up-openclaw-with-claude-code-and-gemini-3-pro/)** | Routes between Claude + Gemini natively |
 | **LiteLLM Proxy** | ALL of the above — unified gateway, pre-configured for every free provider |
 
 ### LiteLLM Configuration (Pre-installed)
@@ -182,57 +192,57 @@ model_list:
 
 ## 5. Pre-installed Claude Code Skills & CLAUDE.md
 
-Claude Code skills are markdown files stored in `~/.claude/skills/` that extend Claude's capabilities. CrabWithClawOS ships with a curated selection pre-installed:[^23][^24][^25]
+Claude Code skills are markdown files stored in `~/.claude/skills/` that extend Claude's capabilities. CrabWithClawOS ships with a curated selection [pre-installed](https://github.com/VoltAgent/awesome-claude-skills):
 
 ### Official Anthropic Skills (Pre-installed)
 
 | Skill | What It Does |
 |-------|-------------|
-| `anthropics/docx` | Create, edit, and analyze Word documents [^26] |
-| `anthropics/xlsx` | Create, edit, and analyze Excel spreadsheets [^26] |
-| `anthropics/pdf` | Extract text, create PDFs, handle forms [^26] |
-| `anthropics/pptx` | Create and edit PowerPoint presentations [^26] |
-| `anthropics/doc-coauthoring` | Collaborative document editing [^26] |
-| `anthropics/mcp-builder` | Create MCP servers to integrate external APIs [^26] |
-| `anthropics/webapp-testing` | Test web apps using Playwright [^26] |
-| `anthropics/frontend-design` | Frontend design and UI/UX development [^26] |
-| `anthropics/canvas-design` | Design visual art in PNG/PDF [^26] |
-| `anthropics/algorithmic-art` | Generative art using p5.js [^26] |
-| `anthropics/skill-creator` | Meta-skill: guide for creating new skills [^26] |
+| `anthropic/docx` | Create, edit, and analyze Word documents |
+| `anthropic/xlsx` | Create, edit, and analyze Excel spreadsheets |
+| `anthropic/pdf` | Extract text, create PDFs, handle forms |
+| `anthropic/pptx` | Create and edit PowerPoint presentations |
+| `anthropic/doc-coauthoring` | Collaborative document editing |
+| `anthropic/mcp-builder` | Create MCP servers to integrate external APIs |
+| `anthropic/webapp-testing` | Test web apps using Playwright |
+| `anthropic/frontend-design` | Frontend design and UI/UX development |
+| `anthropic/canvas-design` | Design visual art in PNG/PDF |
+| `anthropic/algorithmic-art` | Generative art using p5.js |
+| `anthropic/skill-creator` | Meta-skill: guide for creating new skills |
 
 ### Community Skills (Pre-installed — Curated Best)
 
 | Skill | Category | Purpose |
 |-------|----------|---------|
-| `obra/test-driven-development` | Development | Write tests before implementing code [^26] |
-| `obra/systematic-debugging` | Development | Methodical problem-solving in code [^26] |
-| `obra/root-cause-tracing` | Development | Investigate fundamental problems [^26] |
-| `obra/subagent-driven-development` | Development | Multi-sub-agent development workflow [^26] |
-| `obra/dispatching-parallel-agents` | Productivity | Coordinate multiple simultaneous agents [^26] |
-| `obra/verification-before-completion` | Development | Validate work before finalizing [^26] |
-| `obra/brainstorming` | Productivity | Generate and explore ideas [^26] |
-| `obra/writing-plans` | Productivity | Create strategic documentation [^26] |
-| `obra/executing-plans` | Productivity | Implement strategic plans [^26] |
-| `obra/finishing-a-development-branch` | Git | Complete Git code branches [^26] |
-| `obra/requesting-code-review` | Git | Initiate code review processes [^26] |
-| `obra/receiving-code-review` | Git | Process and incorporate feedback [^26] |
-| `obra/using-git-worktrees` | Git | Manage multiple Git working trees [^26] |
-| `fvadicamo/dev-agent-skills` | Git/GitHub | git-commit, PR creation, merge, review [^26] |
-| `alinaqi/claude-bootstrap` | Project Init | Security-first guardrails, spec-driven todos [^26] |
-| `zxkane/aws-skills` | Cloud | AWS infrastructure automation [^26] |
-| `lackeyjb/playwright-skill` | Testing | Browser automation with Playwright [^26] |
-| `sanjay3290/postgres` | Database | Safe read-only SQL against PostgreSQL [^26] |
-| `scarletkc/vexor` | Search | Semantic file search with vector CLI [^26] |
-| `SHADOWPR0/security-bluebook-builder` | Security | Build security Blue Books for sensitive apps [^26] |
-| `obra/defense-in-depth` | Security | Multi-layered security approaches [^26] |
-| `wrsmith108/varlock-claude-skill` | Security | Secure env variable management [^26] |
-| `ComposioHQ/changelog-generator` | DevOps | Transform git commits into release notes [^26] |
-| `K-Dense-AI/claude-scientific-skills` | Science | Scientific research and analysis [^26] |
-| `czlonkowski/n8n-*` (7 skills) | Automation | Full n8n workflow automation suite [^26] |
+| `obra/test-driven-development` | Development | Write tests before implementing code |
+| `obra/systematic-debugging` | Development | Methodical problem-solving in code |
+| `obra/root-cause-tracing` | Development | Investigate fundamental problems |
+| `obra/subagent-driven-development` | Development | Multi-sub-agent development workflow |
+| `obra/dispatching-parallel-agents` | Productivity | Coordinate multiple simultaneous agents |
+| `obra/verification-before-completion` | Development | Validate work before finalizing |
+| `obra/brainstorming` | Productivity | Generate and explore ideas |
+| `obra/writing-plans` | Productivity | Create strategic documentation |
+| `obra/executing-plans` | Productivity | Implement strategic plans |
+| `obra/finishing-a-development-branch` | Git | Complete Git code branches |
+| `obra/requesting-code-review` | Git | Initiate code review processes |
+| `obra/receiving-code-review` | Git | Process and incorporate feedback |
+| `obra/using-git-worktrees` | Git | Manage multiple Git working trees |
+| `fvadicamo/dev-agent-skills` | Git/GitHub | git-commit, PR creation, merge, review |
+| `alinaqi/claude-bootstrap` | Project Init | Security-first guardrails, spec-driven todos |
+| `zxkane/aws-skills` | Cloud | AWS infrastructure automation |
+| `lackeyjb/playwright-skill` | Testing | Browser automation with Playwright |
+| `sanjay3290/postgres` | Database | Safe read-only SQL against PostgreSQL |
+| `scarletkc/vexor` | Search | Semantic file search with vector CLI |
+| `SHADOWPR0/security-bluebook-builder` | Security | Build security Blue Books for sensitive apps |
+| `obra/defense-in-depth` | Security | Multi-layered security approaches |
+| `wrsmith108/varlock-claude-skill` | Security | Secure env variable management |
+| `ComposioHQ/changelog-generator` | DevOps | Transform git commits into release notes |
+| `K-Dense-AI/claude-scientific-skills` | Science | Scientific research and analysis |
+| `czlonkowski/n8n-*` (7 skills) | Automation | Full n8n workflow automation suite |
 
 ### Context Engineering Skills (Pre-installed)
 
-These advanced skills by muratcankoylan teach Claude how to handle context effectively:[^26]
+These advanced skills by muratcankoylan teach Claude how to handle context effectively:
 
 - `context-fundamentals` — What context is and why it matters
 - `context-degradation` — Recognize context failure patterns
@@ -245,7 +255,7 @@ These advanced skills by muratcankoylan teach Claude how to handle context effec
 
 ### Global CLAUDE.md (Pre-configured)
 
-CrabWithClawOS ships with a global `~/.claude/CLAUDE.md` optimized for the distro:
+CrabWithClawOS ships with a [global CLAUDE.md](https://code.claude.com/docs/en/skills) optimized for the distro:
 
 ```markdown
 # CrabWithClawOS Global Project Context
@@ -285,15 +295,15 @@ CrabWithClawOS ships with a global `~/.claude/CLAUDE.md` optimized for the distr
 
 ### Why Brave
 
-Brave is the most AI-integrated browser available for Linux:[^27][^28][^29]
+Brave is the most AI-integrated browser available for Linux:
 
-- **Leo AI** — Built-in AI assistant in the sidebar, powered by multiple models (Llama, Mixtral, Claude)[^28][^30]
-- **AI Browsing** — Autonomous agent mode that can browse, research, fill carts, compare products[^29]
-- **Multi-Tab Context** — Leo understands content across multiple open tabs[^28]
-- **Skills** — Create custom AI Skills like `/fact-check`, `/research-brief`[^29]
-- **Vision** — Analyze images on webpages and in PDFs[^28]
-- **Privacy-first** — No logging, conversations not stored, anonymous reverse-proxy[^31]
-- **Cross-session memory** — AI remembers previous browsing sessions[^32]
+- **[Leo AI](https://brave.com/blog/leo-roadmap-2025-update/)** — Built-in AI assistant in the sidebar, powered by multiple models (Llama, Mixtral, Claude)
+- **[AI Browsing](https://support.brave.app/hc/en-us/articles/41240379376909-How-do-I-use-AI-Browsing-in-Brave)** — Autonomous agent mode that can browse, research, fill carts, compare products
+- **Multi-Tab Context** — Leo understands content across multiple open tabs
+- **Skills** — Create custom AI Skills like `/fact-check`, `/research-brief`
+- **Vision** — Analyze images on webpages and in PDFs
+- **[Privacy-first](https://brave.com/blog/leo-release/)** — No logging, conversations not stored, anonymous reverse-proxy
+- **Cross-session memory** — AI remembers previous browsing sessions
 
 ### Pre-defined Bookmark Bar
 
@@ -350,12 +360,12 @@ CrabWithClawOS ships Brave with an organized bookmarks toolbar:
 - CrabWithClawOS Docs — `https://crabwithclawos.dev/docs`
 - CrabWithClawOS Issues — `https://github.com/crabwithclawos/issues`
 
-### Alternative Browser: Zen Browser
+### Alternative Browser: [Zen Browser](https://zen-browser.app/release-notes/)
 
-Pre-installed as secondary option for users preferring maximum privacy:[^33][^34]
+Pre-installed as secondary option for users preferring maximum [privacy](https://www.oreateai.com/blog/discovering-zen-browser-a-privacyfocused-alternative/f7f4874c7e58f0612b3a12f782148a1a):
 - Firefox-based, MPL 2.0 open source
-- All telemetry completely stripped from core[^33]
-- Vertical tabs, split view, workspace management[^34]
+- All telemetry completely stripped from core
+- Vertical tabs, split view, workspace management
 - No AI features (for users who want pure privacy without cloud AI)
 
 ***
@@ -366,40 +376,40 @@ Pre-installed as secondary option for users preferring maximum privacy:[^33][^34
 
 | Tool | Description | Install |
 |------|-------------|---------|
-| **SoupaWhisper** | Local push-to-talk voice-to-text using faster-whisper. Hold F12 → speak → release → text typed into active window. ~250 line Python script, 100% local, no cloud [^35] | `pipx install soupawhisper` |
-| **nerd-dictation** | Offline speech-to-text using VOSK-API. Single-file Python script, minimal deps, zero background overhead. Manual begin/end activation, configurable with Python string ops [^36][^37] | `pip install nerd-dictation` + VOSK model |
+| **[SoupaWhisper](https://www.ksred.com/soupawhisper-how-i-replaced-superwhisper-on-linux/)** | Local push-to-talk voice-to-text using faster-whisper. Hold F12 → speak → release → text typed into active window. ~250 line Python script, 100% local, no cloud | `pipx install soupawhisper` |
+| **[nerd-dictation](https://github.com/ideasman42/nerd-dictation)** | Offline speech-to-text using VOSK-API. Single-file Python script, minimal deps, zero background overhead. Manual begin/end activation, configurable with Python string ops | `pip install nerd-dictation` + VOSK model |
 
-**Recommended primary**: SoupaWhisper (uses faster-whisper which is much faster than VOSK)[^35]
-**Recommended fallback**: nerd-dictation (lighter, no GPU needed)[^37]
+**Recommended primary**: SoupaWhisper (uses faster-whisper which is much faster than VOSK)
+**Recommended fallback**: nerd-dictation (lighter, no GPU needed)
 
 ### Audio Editing (CLI)
 
 | Tool | Description | Install |
 |------|-------------|---------|
-| **SoX (Sound eXchange)** | "Swiss Army knife of audio." Convert between 20+ formats, apply effects (echo, fade, chorus, normalize, reverse, trim), batch process entire folders. Chain effects: `sox in.wav out.mp3 trim 10 5 norm reverse` [^38][^39][^40] | `apt install sox libsox-fmt-all` |
-| **FFmpeg** (audio mode) | Extract audio from video, convert formats, adjust bitrate/sample rate, mix channels. Example: `ffmpeg -i video.mp4 -vn -acodec libmp3lame audio.mp3` [^41] | `apt install ffmpeg` |
+| **[SoX (Sound eXchange)](https://hyaline.systems/blog/sox-guide/)** | "Swiss Army knife of audio." Convert between 20+ formats, apply effects (echo, fade, chorus, normalize, reverse, trim), batch process entire folders. Chain effects: `sox in.wav out.mp3 trim 10 5 norm reverse` | `apt install sox libsox-fmt-all` |
+| **[FFmpeg](https://community.hetzner.com/tutorials/how-to-use-ffmpeg-for-video-editing/)** (audio mode) | Extract audio from video, convert formats, adjust bitrate/sample rate, mix channels. Example: `ffmpeg -i video.mp4 -vn -acodec libmp3lame audio.mp3` | `apt install ffmpeg` |
 
-**Recommended primary**: SoX (purpose-built for audio)[^40]
-**Recommended secondary**: FFmpeg (when working with audio extracted from video)[^41]
+**Recommended primary**: SoX (purpose-built for audio)
+**Recommended secondary**: FFmpeg (when working with audio extracted from video)
 
 ### Image Editing (CLI)
 
 | Tool | Description | Install |
 |------|-------------|---------|
-| **ImageMagick 7** | Industry-standard CLI image manipulation. Resize, crop, color adjust, composite, annotate, format convert, batch process. Example: `magick input.jpg -resize 50% -blur 0x2 -quality 85 output.jpg` [^42][^43] | `apt install imagemagick` |
-| **GraphicsMagick** | ImageMagick fork focused on stability and performance. Same syntax, faster for large batches. Better thread safety [^42][^43] | `apt install graphicsmagick` |
+| **[ImageMagick 7](https://img.ly/blog/open-source-photo-editing-sdks-vs-img-ly-ce-sdk-an-honest-comparison-for-developers/)** | Industry-standard CLI image manipulation. Resize, crop, color adjust, composite, annotate, format convert, batch process. Example: `magick input.jpg -resize 50% -blur 0x2 -quality 85 output.jpg` | `apt install imagemagick` |
+| **[GraphicsMagick](https://img.ly/blog/open-source-photo-editing-sdks-vs-img-ly-ce-sdk-an-honest-comparison-for-developers/)** | ImageMagick fork focused on stability and performance. Same syntax, faster for large batches. Better thread safety | `apt install graphicsmagick` |
 
-**Recommended primary**: ImageMagick 7 (wider format support, more filters)[^43]
-**Recommended fallback**: GraphicsMagick (faster batch processing)[^42]
+**Recommended primary**: ImageMagick 7 (wider format support, more filters)
+**Recommended fallback**: GraphicsMagick (faster batch processing)
 
 ### Video Editing (CLI)
 
 | Tool | Description | Install |
 |------|-------------|---------|
-| **FFmpeg** | The universal video tool. Cut/trim, merge, transcode, extract frames, add subtitles, stabilize, resize, adjust speed. Example: `ffmpeg -i in.mp4 -ss 00:01:00 -t 00:00:30 -c copy clip.mp4` [^41][^44][^45] | `apt install ffmpeg` |
+| **[FFmpeg](https://gist.github.com/ntamvl/6ea38b566506e4811e4a029095bfa915)** | The universal video tool. Cut/trim, merge, transcode, extract frames, add subtitles, stabilize, resize, adjust speed. Example: `ffmpeg -i in.mp4 -ss 00:01:00 -t 00:00:30 -c copy clip.mp4` | `apt install ffmpeg` |
 | **MLT (melt)** | Command-line video editor from the Shotcut/Kdenlive ecosystem. Supports transitions, filters, multi-track compositing. Example: `melt clip1.mp4 -mix 25 -mixer luma clip2.mp4 -consumer avformat:output.mp4` | `apt install mlt-7` |
 
-**Recommended primary**: FFmpeg (handles 99% of CLI video tasks)[^44][^41]
+**Recommended primary**: FFmpeg (handles 99% of CLI video tasks)
 **Recommended secondary**: melt (when you need transitions/compositing without a GUI)
 
 ***
@@ -408,19 +418,19 @@ Pre-installed as secondary option for users preferring maximum privacy:[^33][^34
 
 ### Terminal Emulator: Ghostty (Primary) + Kitty (Fallback)
 
-- **Ghostty** — GPU-accelerated, clean interface, excellent multi-tab performance[^46]
-- **Kitty** — Mature GPU-accelerated terminal, image protocol, built-in splits[^46]
-- **WezTerm** — Lua-configurable Rust-based fallback[^46]
+- **[Ghostty](https://www.youtube.com/watch?v=HRTw7bLWQYs)** — GPU-accelerated, clean interface, excellent multi-tab performance
+- **[Kitty](https://www.youtube.com/watch?v=HRTw7bLWQYs)** — Mature GPU-accelerated terminal, image protocol, built-in splits
+- **[WezTerm](https://www.youtube.com/watch?v=HRTw7bLWQYs)** — Lua-configurable Rust-based fallback
 
 ### Terminal Multiplexer: Zellij + tmux
 
-- **Zellij** — Modern, self-documenting, plugin system, intuitive defaults[^47][^48]
-- **tmux** — Pre-installed for compatibility[^48]
+- **[Zellij](https://keyholesoftware.com/zellij-the-impressions-of-a-casual-tmux-user/)** — Modern, self-documenting, plugin system, intuitive defaults
+- **[tmux](https://tmuxai.dev/tmux-vs-zellij/)** — Pre-installed for compatibility
 
 ### Shell: Zsh + Starship
 
-- **Zsh** with zsh-autosuggestions, zsh-syntax-highlighting, fzf integration[^49]
-- **Starship** — Rust-compiled async prompt showing git, Python/Node versions, GPU status[^50]
+- **[Zsh](https://carlosneto.dev/blog/2024/2024-02-08-starship-zsh/)** with zsh-autosuggestions, zsh-syntax-highlighting, fzf integration
+- **[Starship](https://news.ycombinator.com/item?id=44364874)** — Rust-compiled async prompt showing git, Python/Node versions, GPU status
 
 ### Editor Stack
 
@@ -430,34 +440,59 @@ Pre-installed as secondary option for users preferring maximum privacy:[^33][^34
 | **Helix** | Secondary — built-in LSP, no config needed |
 | **VS Code (code-oss)** | Optional — for extension-based AI tools |
 
+### Typography & Icons (Nerd Fonts)
+
+The entire visual stack (Starship, Neovim, Zellij icons, eza, yazi) requires Nerd Fonts to render correctly:
+
+- **JetBrains Mono Nerd Font** — Pre-installed as default
+- **FiraCode Nerd Font** — Ligature-heavy alternative
+- **Installation**: Managed via `fonts-jetbrains-mono` + Nerd Fonts patcher script at first boot.
+
 ***
 
 ## 9. Development Infrastructure
 
-### Runtimes (Pre-installed)
-- **Python 3.12+** with pip, pipx, uv (fast pip replacement)
-- **Node.js 22 LTS** with npm, pnpm
-- **Rust** via rustup
+### Runtimes & Version Managers
+- **[mise](https://arctiq.com/blog/simplify-development-with-the-nix-ecosystem)** — Universal runtime version manager (replaces nvm, pyenv, etc.)
+- **Python 3.12+** with `pip`, `pipx`, `uv` (fast replacement for pip)
+- **Node.js 22 LTS** with `npm`, `pnpm`
+- **Rust** via `rustup`
 - **Go 1.22+**
-- **Bun** — fast JS runtime used by OpenClaw[^11]
+- **Bun** — Fast JS runtime used by [OpenClaw](https://vertu.com/ai-tools/the-ultimate-guide-setting-up-openclaw-with-claude-code-and-gemini-3-pro/)
 
-### Dev Tools
-- **Git** + **lazygit** (TUI) + **delta** (syntax-highlighted diffs) + **gh** (GitHub CLI)[^51]
-- **Docker** + **Docker Compose** + **lazydocker** (TUI)[^52]
+### Cloud Provider CLIs & IaC
+- **Cloud CLIs**: AWS CLI v2, Google Cloud (gcloud), Azure (az), DigitalOcean (doctl), Fly.io (flyctl), Vercel, Netlify
+- **Infrastructure as Code**: [OpenTofu](https://opentofu.org/) (Terraform fork), Ansible (agentless configuration), Pulumi (IaC via Python/TS), Terragrunt
+
+### Kubernetes & Container Orchestration
+- **[Docker](https://lazydocker.com)** + **Docker Compose** + **[lazydocker](https://dev.to/sardinessz/5-developer-tools-to-really-step-up-your-workflow-2f1o)** (TUI)
 - **Podman** + **Distrobox**
-- **direnv** — auto-loads env vars per directory[^53]
-- **mise** — runtime version manager (replaces nvm, pyenv, etc.)
+- **Kubernetes**: `kubectl`, `k9s` (TUI), `helm`, `k3s`/`minikube` for local AI workloads
 
-### File Tools
-- **yazi** (file manager), **fzf** (fuzzy finder), **ripgrep**, **fd**, **bat**, **eza**, **zoxide**, **jq/yq**, **tokei**
+### Database CLI Tools
+- **Relational**: `pgcli` (PostgreSQL), `mycli` (MySQL/MariaDB), `litecli` (SQLite) — all with auto-completion
+- **NoSQL & Universal**: `mongosh` (MongoDB), `redis-cli`, `usql` (Universal CLI for 20+ databases)
+
+### Network, Remote Access & Secrets
+- **Remote**: **Mosh** (mobile shell), **Tailscale** (mesh VPN), **Termius** (SSH manager), **sshs** (TUI SSH config), **tmate** (shared sessions)
+- **Secrets**: `age` (encryption), `sops` (Git-safe secrets), `pass` (Unix standard), Bitwarden CLI, HashiCorp Vault
+- **HTTP/API**: [HTTPie](https://httpie.io/), `xh` (Rust-based fast HTTPie), `curlie`
+
+### Task Automation & Git
+- **[Git](https://dev.to/sardinessz/5-developer-tools-to-really-step-up-your-workflow-2f1o)** + **lazygit** (TUI) + **delta** (syntax diffs) + **gh** (GitHub CLI)
+- **Automation**: `just` (modern Makefile), `watchexec` (run on change), `process-compose` (manage multi-process AI stacks)
+- **[direnv](https://arctiq.com/blog/simplify-development-with-the-nix-ecosystem)** — Auto-load environment variables per directory
+
+### File Tools & CLI Essentials
+- **[yazi](https://dev.to/sardinessz/5-developer-tools-to-really-step-up-your-workflow-2f1o)** (file manager), `fzf` (fuzzy finder), `ripgrep`, `fd`, `bat`, `eza`, `zoxide`, `jq`/`yq`, `tokei`
 
 ***
 
 ## 10. Kernel & OS-Level Optimizations
 
-### Kernel: `linux-image-amd64` (Debian stock) + Custom `sysctl` tuning
+### Kernel: `linux-image-amd64` (Debian stock) + [Custom tuning](https://www.zdnet.com/article/why-ai-runs-on-linux/)
 
-Debian's stock kernel is used for stability, with AI-optimized sysctl settings:[^54][^55]
+Debian's stock kernel is used for stability, with [AI-optimized sysctl](https://www.itprotoday.com/ai-machine-learning/how-linux-optimizes-ai-hardware-acceleration) settings:
 
 ```ini
 # /etc/sysctl.d/99-crabwithclawos.conf
@@ -485,11 +520,11 @@ kernel.sched_autogroup_enabled = 0
 ```
 
 ### GPU Support
-- **NVIDIA**: `nvidia-driver` + `nvidia-cuda-toolkit` from `non-free` repos, persistence mode[^54]
-- **AMD**: `firmware-amd-graphics` + ROCm from AMD repos[^54]
+- **NVIDIA**: `nvidia-driver` + `nvidia-cuda-toolkit` from `non-free` repos, persistence mode
+- **AMD**: `firmware-amd-graphics` + ROCm from AMD repos
 - **Intel**: `intel-media-va-driver` + `intel-compute-runtime`
 
-### Filesystem: Btrfs
+### Filesystem: [Btrfs](https://klarasystems.com/articles/zfs-vs-btrfs-architects-features-and-stability-2/)
 
 ```
 # Subvolume layout
@@ -500,9 +535,9 @@ kernel.sched_autogroup_enabled = 0
 @snapshots  -> /.snapshots
 ```
 
-Automated snapshots via **snapper** — hourly + pre/post apt hooks.[^56]
+Automated snapshots via **snapper** — hourly + pre/post apt hooks.
 
-### cgroups v2 Resource Control
+### [cgroups v2 Resource Control](https://ohyaan.github.io/tips/cgroups_v2_&_systemd-run_-_resource_control_and_sandboxing_for_raspberry_pi/)
 
 ```ini
 # /etc/systemd/system/ai-agents.slice
@@ -516,16 +551,16 @@ CPUWeight=200
 
 | Service | Purpose |
 |---------|---------|
-| `ollama.service` | Local LLM server, GPU-aware, memory-limited [^22] |
-| `openclaw-gateway.service` | OpenClaw orchestrator, port 18789 [^12] |
+| `ollama.service` | [Local LLM server](https://docs.ollama.com/linux), GPU-aware, memory-limited |
+| `openclaw-gateway.service` | [OpenClaw](https://www.reddit.com/r/AiForSmallBusiness/comments/1r4uyrh/the_ultimate_openclaw_setup_guide/) orchestrator, port 18789 |
 | `litellm-proxy.service` | Unified LLM API proxy on localhost:4000 |
 | `crab-monitor.service` | System + AI monitoring dashboard |
 | `crab-snapshot.timer` | Automated Btrfs snapshots every 2 hours |
 
 ### Sandboxing
-- **Firejail** for AI agents that execute arbitrary code[^57]
-- **bubblewrap** for finer-grained sandboxing[^57]
-- systemd `ProtectSystem=strict`, `PrivateTmp=yes`, `NoNewPrivileges=yes` on all AI services[^58]
+- **[Firejail](https://firejail.wordpress.com/2025/08/20/how-to-sandbox-linux-apps-with-firejail-and-bubblewrap/)** for AI agents that execute arbitrary code
+- **bubblewrap** for finer-grained sandboxing
+- systemd `ProtectSystem=strict`, `PrivateTmp=yes`, `NoNewPrivileges=yes` on all AI services
 
 ***
 
@@ -533,10 +568,10 @@ CPUWeight=200
 
 | Tool | Purpose |
 |------|---------|
-| **btop** | CPU, RAM, Disk, Network monitoring with GPU support [^59][^60] |
-| **nvtop** | GPU utilization, VRAM, temp, power (NVIDIA/AMD/Intel) [^61][^62] |
+| **[btop](https://github.com/aristocratos/btop)** | [CPU, RAM, Disk, Network](https://www.youtube.com/watch?v=CHeZ5-rbVGo) monitoring with GPU support |
+| **[nvtop](https://github.com/Syllo/nvtop)** | [GPU utilization](https://www.x-cmd.com/install/nvtop/), VRAM, temp, power (NVIDIA/AMD/Intel) |
 | **bandwhich** | Per-process network bandwidth |
-| **systemd-cgtop** | Real-time cgroup resource consumption [^58] |
+| **systemd-cgtop** | Real-time [cgroup resource](https://ohyaan.github.io/tips/cgroups_v2_&_systemd-run_-_resource_control_and_sandboxing_for_raspberry_pi/) consumption |
 
 ### `crab-monitor` TUI Dashboard
 Custom dashboard aggregating per-tool token usage, API costs, GPU metrics, active agent sessions, model router health.
@@ -637,165 +672,44 @@ brave-browser zen-browser
 ## 14. Build & Release Roadmap
 
 ### Phase 1: Foundation (Weeks 1–3)
-- Set up `live-build` environment on Debian Bookworm[^3][^4]
-- Define all `*.list.chroot` package lists
-- Configure Btrfs subvolumes + snapper
-- Calamares installer with CrabWithClawOS branding
+- Set up **[live-build](https://live-team.pages.debian.net/live-manual/html/live-manual.en.html)** environment on Debian Bookworm
+- Define all `*.list.chroot` package lists and Btrfs subvolumes
+- Calamares installer with **[CrabWithClawOS branding](https://habr.com/en/articles/654755/)**
 
 ### Phase 2: AI Tool Stack (Weeks 4–6)
 - Build `crab-install` wrapper for all AI CLI tools
 - Pre-configure LiteLLM with all free providers
-- Claude Code skills deployment to `/etc/skel/.claude/skills/`
-- Systemd services for Ollama, OpenClaw, LiteLLM
+- Claude Code skills deployment and systemd services for Ollama/OpenClaw
 - Firejail profiles + cgroups v2 slices
 
 ### Phase 3: UX & Browser (Weeks 7–9)
-- Brave browser with all predefined bookmarks (via `policies.json`)
-- Zen Browser as secondary option
+- Brave browser with predefined bookmarks and Zen Browser secondary
 - Hyprland + Waybar configuration
 - Zsh + Starship + Neovim (LazyVim) setup
 - `crab-monitor` TUI dashboard
-- Workspace layout presets
 
 ### Phase 4: Media & Polish (Weeks 10–12)
-- CLI media tools integration + testing
-- SoupaWhisper + nerd-dictation setup
-- First-boot setup wizard
-- Documentation site
-- Automated ISO build via GitHub Actions
+- CLI media tools (FFmpeg, SoX, SoupaWhisper) integration
+- Documentation site and automated ISO build via GitHub Actions
 - v1.0 release: **"CrabWithClawOS — The Pincer Edition"** 🦀
+
+***
+
+## 15. Communication & Knowledge Management
+
+### Team Collaboration (CLI-native)
+- **Slack CLI**: Manage enterprise team communication from the terminal.
+- **neomutt**: High-performance terminal email client.
+- **gomuks**: Matrix TUI for secure, open-source team chat.
+- **tmate**: Instant shared terminal sessions for pair programming and debugging.
+
+### Knowledge Management & Research
+- **[Logseq](https://logseq.com/)**: Local-first, Markdown-based knowledge graph for research notes and prompts.
+- **jrnl**: CLI journaling tool to log AI experiments (`jrnl today I tested DeepSeek R1 and...`).
+- **glow**: Terminal Markdown renderer for beautiful documentation reading.
 
 ***
 
 *CrabWithClawOS: Where every terminal has claws, and every model has a key.* 🦀🔑
 
----
-
-## References
-
-1. [Debian 12 "Bookworm" | Specs, reviews and EoL info - InvGate](https://invgate.com/itdb/debian-12-bookworm) - Minimum Requirements:
-
- Processor: 1 GHz (i686 for 32-bit PC) RAM: 512 MB (1 GB recommended, 2 GB or...
-
-2. [2.5. Memory and Disk Space Requirements - Debian](https://www.debian.org/releases/bookworm/amd64/ch02s05.en.html) - You must have at least 780MB of memory and 1160MB of hard disk space to perform a normal installatio...
-
-3. [Quickly Build a Custom Debian Live ISO with Live-Build](https://ianlecorbeau.com/blog/debian-live-build.html) - Advice and rants about Unix, strength training, and other stuff
-
-4. [Building a custom Debian ISO image](https://debian-live-config.readthedocs.io/en/latest/custom.html)
-
-5. [Debian Live Manual](https://live-team.pages.debian.net/live-manual/html/live-manual.en.html) - As a first example, create a build directory, change to that directory and then execute the followin...
-
-6. [Introducing into calamares bootloader - Habr](https://habr.com/en/articles/654755/) - Your directory with branding must be placed in /usr/share/calamares/branding, I will use /usr/share/...
-
-7. [Best AI Coding CLI Tools in 2026: 7 Terminal Agents Compared](https://awesomeagents.ai/tools/best-ai-coding-cli-tools-2026/) - A data-driven comparison of the top AI coding CLI tools - Claude Code, Gemini CLI, Codex CLI, Aider,...
-
-8. [Claude Code Review 2026: Complete AI Coding Assistant ...](https://hackceleration.com/claude-code-review/) - We see how we test automated code generation, contextual project analysis, and direct command execut...
-
-9. [How to Integrate AI into Your Terminal Using OpenCode](https://www.freecodecamp.org/news/integrate-ai-into-your-terminal-using-opencode/) - OpenCode is an open-source AI coding assistant that works right inside your terminal. It's built for...
-
-10. [OpenCode: an Open-source AI Coding Agent Competing with ...](https://www.infoq.com/news/2026/02/opencode-coding-agent/) - Open-source AI coding tool OpenCode features a native terminal-based UI, multi-session support, and ...
-
-11. [Setup OpenClaw with Claude & Gemini: Your Private 24/7 ...](https://vertu.com/ai-tools/the-ultimate-guide-setting-up-openclaw-with-claude-code-and-gemini-3-pro/) - AI Tools · Guides. Support. Shipping & Delivery · Returns & Refunds ... OpenClaw is a “Pro” tool, me...
-
-12. [The ULTIMATE OpenClaw Setup Guide!](https://www.reddit.com/r/AiForSmallBusiness/comments/1r4uyrh/the_ultimate_openclaw_setup_guide/) - OpenClaw Discord setup. OpenClaw GitHub installation guide. Top AI tools for small business growth. ...
-
-13. [Amp Code AI Review 2026: Autonomous Agent for Developers](https://www.secondtalent.com/resources/amp-ai-review/) - Explore Amp (AmpCode), the AI-powered coding agent that automates workflows, refactors code, and col...
-
-14. [Block released a new open source AI agent called Goose. It can do ...](https://www.reddit.com/r/LocalLLaMA/comments/1ic9wi6/block_released_a_new_open_source_ai_agent_called/) - Block released a new open source AI agent called Goose. It can do more than coding for engineers. Ot...
-
-15. [Goose: An Open Source Take on Vibe Coding and Agentic Workflow ...](https://hyperdev.matsuoka.com/p/goose-an-open-source-take-on-vibe) - When OpenAI adopted MCP in March 2025 across ChatGPT and their Agents SDK, followed by Microsoft's i...
-
-16. [The Open-Source Agent That's Redefining AI Coding Assistants](https://www.datastudios.org/post/kilo-code-the-open-source-agent-that-s-redefining-ai-coding-assistants) - Kilo Code—often simply called Kilo—has quickly become one of the most talked-about AI development to...
-
-17. [Kilo Code: An open source AI coding agent that works with any model](https://tessl.io/blog/inside-kilo-code-an-open-source-ai-coding-agent-with-plans-to-reshape-software-development/) - Launched in March, 2025, Kilo Code is an open source coding agent that can be configured for a range...
-
-18. [Top 10 Open-Source CLI Coding Agents You Should Be Using in ...](https://dev.to/forgecode/top-10-open-source-cli-coding-agents-you-should-be-using-in-2025-with-links-244m) - 1. ForgeCode – Your In-Terminal AI Pair Programmer · 2. Google Gemini CLI – Google's Terminal AI · 3...
-
-19. [Top 10 Open Source AI Code Editors for Developers in 2025 - Vertu](https://vertu.com/ar/ai-tools/top-10-open-source-ai-code-editors-for-developers-2025/) - Visual Studio Code is a main ai-native code editor. Many developers pick it because it is open sourc...
-
-20. [f/mcptools: A command-line interface for interacting with ...](https://github.com/f/mcptools) - A comprehensive command-line interface for interacting with MCP (Model Context Protocol) servers. Di...
-
-21. [Run your own local LLM with Ollama](https://cylab.be/blog/377/run-your-own-local-llm-with-ollama) - So on Linux, you must. edit systemd service configuration with sudo systemctl edit ollama.service; a...
-
-22. [Linux](https://docs.ollama.com/linux) - Create a service file in /etc/systemd/system/ollama.service : Copy. [Unit] Description=Ollama Servic...
-
-23. [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills) - Create, manage, and share skills to extend Claude's capabilities in Claude Code. Includes custom sla...
-
-24. [Create Reusable Commands with Skills in Claude Code](https://wmedia.es/en/tips/claude-code-skills-custom-slash-commands) - Skills are markdown files that Claude Code executes as slash commands. Create a SKILL.md, invoke it ...
-
-25. [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/slash-commands) - Create, manage, and share skills to extend Claude's capabilities in Claude Code. Includes custom sla...
-
-26. [The awesome collection of Claude Skills and resources. - GitHub](https://github.com/VoltAgent/awesome-claude-skills) - The awesome collection of Claude Skills and resources. - VoltAgent/awesome-claude-skills
-
-27. [Brave’s Leo AI is Getting Smarter, Has Anyone Noticed the Improvements?](https://www.reddit.com/r/brave_browser/comments/1lypxbq/braves_leo_ai_is_getting_smarter_has_anyone/) - Brave’s Leo AI is Getting Smarter, Has Anyone Noticed the Improvements?
-
-28. [Building Browser AI: Leo's Development Progress and Plans](https://brave.com/blog/leo-roadmap-2025-update/) - Leo has been evolving from a helpful browsing companion toward a smart, personalized collaborator—a ...
-
-29. [How do I use AI Browsing in Brave?](https://support.brave.app/hc/en-us/articles/41240379376909-How-do-I-use-AI-Browsing-in-Brave) - Knowledge base for Brave Browser
-
-30. [How do I use Brave Leo?](https://support.brave.app/hc/en-us/articles/20958609786637-How-do-I-use-Brave-Leo) - Knowledge base for Brave Browser
-
-31. [Leo, Brave's browser-native AI assistant, is now available in Nightly ...](https://brave.com/blog/leo-release/) - Leo, the AI assistant built natively in the Brave browser, is now available for testing and feedback...
-
-32. [AI Web Browsers Benchmark: Complete Selection Guide 2026research.aimultiple.com › ai-web-browser](https://research.aimultiple.com/ai-web-browser/) - Explore our comprehensive AI web browser benchmark comparing Brave Leo, Opera Aria, Arc Max, Perplex...
-
-33. [Release notes - Zen Browser](https://zen-browser.app/release-notes/) - Zen Browser is built for speed, security, and true privacy. Download now to enjoy a beautifully-desi...
-
-34. [Discovering Zen Browser: A Privacy-Focused Alternative - Oreate AI](https://www.oreateai.com/blog/discovering-zen-browser-a-privacyfocused-alternative/f7f4874c7e58f0612b3a12f782148a1a) - Zen Browser combines privacy-focused features with customizable options based on Firefox's framework...
-
-35. [SoupaWhisper: How I Replaced SuperWhisper on Linux](https://www.ksred.com/soupawhisper-how-i-replaced-superwhisper-on-linux/) - Local voice-to-text for Linux using Whisper AI. Hold key, speak, release — text appears. No cloud, n...
-
-36. [Nerd-Dictation - a simple, hackable speech to text tool for the Linux desktop](https://www.reddit.com/r/linux/comments/nl9oyv/nerddictation_a_simple_hackable_speech_to_text/?tl=fr) - Nerd-Dictation - a simple, hackable speech to text tool for the Linux desktop
-
-37. [ideasman42/nerd-dictation: Simple, hackable offline ...](https://github.com/ideasman42/nerd-dictation) - This is a utility that provides simple access speech to text for using in Linux without being tied t...
-
-38. [CLI Magic: Transform your audio files with SoX - Linux.com](https://www.linux.com/news/cli-magic-transform-your-audio-files-sox/) - Author: Shashank Sharma Sound eXchange (SoX) is a command-line sound sample translator. This Swiss A...
-
-39. [sox man](https://linuxcommandlibrary.com/man/sox) - sox linux command man page: Convert, edit, and play audio files
-
-40. [SoX guide: Convert, manipulate and generate audio on the ...](https://hyaline.systems/blog/sox-guide/) - SoX is a free command line audio processing tool with a text-based interface that let's you perform ...
-
-41. [How to use FFmpeg for video editing - Hetzner Community](https://community.hetzner.com/tutorials/how-to-use-ffmpeg-for-video-editing/) - Step 1 - Installing. On Windows and Linux, you can download the latest build of FFmpeg from GitHub. ...
-
-42. [CLI Editing Tools](https://www.reddit.com/r/photography/comments/1d7vpfy/cli_editing_tools/)
-
-43. [Open-Source Photo Editing SDKs - 2025 Comparison | IMG.LY Blog](https://img.ly/blog/open-source-photo-editing-sdks-vs-img-ly-ce-sdk-an-honest-comparison-for-developers/) - Compare top open-source photo editing SDKs (Jimp, Pica, OpenCV, ImageMagick) with IMG.LY. Honest ana...
-
-44. [FFMPEG: Convert & Edit Video via Command Line - GitHub Gist](https://gist.github.com/ntamvl/6ea38b566506e4811e4a029095bfa915) - FFMPEG is a free software that lets you create/edit/convert videos via command line. You can downloa...
-
-45. [Video Editing on the Command Line](https://www.rigacci.org/wiki/doku.php/doc/appunti/linux/video/ffmpeg)
-
-46. [Ghostty vs Kitty vs WezTerm – Which Terminal is BEST in 2026?](https://www.youtube.com/watch?v=HRTw7bLWQYs) - Ghostty vs Kitty vs WezTerm | Which Terminal Emulator is Best in 2025? In this video, I compare Ghos...
-
-47. [Zellij: The Impressions of a Casual tmux User | Keyhole Software](https://keyholesoftware.com/zellij-the-impressions-of-a-casual-tmux-user/) - A terminal multiplexer is a program that allows you to interact with multiple terminal sessions with...
-
-48. [Tmux vs Zellij: Terminal Multiplexer Decision Guide - TmuxAI](https://tmuxai.dev/tmux-vs-zellij/) - Both tools excel in their respective domains. tmux is the battle-tested workhorse with extensive eco...
-
-49. [ZSH + Starship: A Productivity Masterpiece](https://carlosneto.dev/blog/2024/2024-02-08-starship-zsh/) - This blog post covers my prompt customization experience, favorite ZSH Plugins, ZSH options, and Sta...
-
-50. [Starship: A minimal, fast, and customizable prompt for any ...](https://news.ycombinator.com/item?id=44364874) - I use oh-my-zsh which covers my needs well. Is starship 'faster' than that? If not, then I probably ...
-
-51. [5 developer tools to really step up your workflow - DEV Community](https://dev.to/sardinessz/5-developer-tools-to-really-step-up-your-workflow-2f1o) - LazyDocker. lazydocker. Similar to lazygit, a TUI manager for docker. This is my favourite TUI so fa...
-
-52. [LazyDocker - Simple Docker Terminal UI Tool](https://lazydocker.com) - Lazydocker Simplify Docker Management with TUI Tool. Lazydocker is a simple, terminal-based UI for m...
-
-53. [Simplify Development with the Nix Ecosystem - Arctiq](https://arctiq.com/blog/simplify-development-with-the-nix-ecosystem) - The devenv CLI tool, built on-top of nix-shell and direnv, provides commands to simplify the creatio...
-
-54. [How Linux Optimizes AI Hardware Acceleration](https://www.itprotoday.com/ai-machine-learning/how-linux-optimizes-ai-hardware-acceleration) - This article examines Linux's role in enhancing AI hardware acceleration, focusing on recent advance...
-
-55. [This OS quietly powers all AI - and most future IT jobs, too](https://www.zdnet.com/article/why-ai-runs-on-linux/) - The Linux kernel is being tuned for AI and ML workloads. Nvidia's CUDA X stack, better partition mem...
-
-56. [ZFS vs Btrfs: Architecture, Features, and Stability #2 - Klara Systems](https://klarasystems.com/articles/zfs-vs-btrfs-architects-features-and-stability-2/) - ZFS and Btrfs are often compared but differ in architecture, stability, and reliability. Learn how t...
-
-57. [How to Sandbox Linux Apps with Firejail and Bubblewrap](https://firejail.wordpress.com/2025/08/20/how-to-sandbox-linux-apps-with-firejail-and-bubblewrap/) - On Linux systems, Bubblewrap and Firejail are two common sandboxing tools used if you need to provid...
-
-58. [cgroups v2 & systemd-run - Resource Control and Sandboxing for ...](https://ohyaan.github.io/tips/cgroups_v2_&_systemd-run_-_resource_control_and_sandboxing_for_raspberry_pi/) - Control Groups (cgroups) v2 is a unified Linux kernel feature that provides hierarchical resource ma...
-
-59. [aristocratos/btop: A monitor of resources](https://github.com/aristocratos/btop) - Resource monitor that shows usage and stats for processor, memory, disks, network and processes. C++...
-
-60. [Modern Linux CLI Tools #16: BTOP](https://www.youtube.com/watch?v=CHeZ5-rbVGo) - In this new video today we are going to talk about BUP another of those um terminal tools that are s...
-
-61. [Efficiency Improvement Hard? nvtop for Quick Solution](https://www.x-cmd.com/install/nvtop/) - NVTOP stands for Neat Videocard TOP, a (h)top like task monitor for GPUs and accelerators.. Install ...
-
-62. [Syllo/nvtop: GPU & Accelerator process monitoring ...](https://github.com/Syllo/nvtop) - NVTOP stands for Neat Videocard TOP, a (h)top like task monitor for GPUs and accelerators. It can ha...
 
