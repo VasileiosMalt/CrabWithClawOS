@@ -295,23 +295,23 @@ CrabWithClawOS ships with a [global CLAUDE.md](https://code.claude.com/docs/en/s
 
 ***
 
-## 6. Browser: Brave with Leo AI + Predefined Bookmarks
+## 6. Browser: Opera One (R3) with Aria AI Agent
 
-### Why Brave
+### Why Opera One
 
-Brave is the most AI-integrated browser available for Linux:
+Opera One is the most agentic, developer-forward AI browser for Linux in 2026:
 
-- **[Leo AI](https://brave.com/blog/leo-roadmap-2025-update/)** — Built-in AI assistant in the sidebar, powered by multiple models (Llama, Mixtral, Claude)
-- **[AI Browsing](https://support.brave.app/hc/en-us/articles/41240379376909-How-do-I-use-AI-Browsing-in-Brave)** — Autonomous agent mode that can browse, research, fill carts, compare products
-- **Multi-Tab Context** — Leo understands content across multiple open tabs
-- **Skills** — Create custom AI Skills like `/fact-check`, `/research-brief`
-- **Vision** — Analyze images on webpages and in PDFs
-- **[Privacy-first](https://brave.com/blog/leo-release/)** — No logging, conversations not stored, anonymous reverse-proxy
-- **Cross-session memory** — AI remembers previous browsing sessions
+- **[Aria AI Agent](https://www.opera.com/features/opera-ai)** — A re-engineered native assistant powered by the "Neon" engine, offering 20% faster responses and zero-sign-up access.
+- **[Agentic Tab Islands](https://press.opera.com/2026/01/15/opera-one-r3-release/)** — AI automatically groups tabs into color-coded "Islands" based on context (e.g., separating LLM docs from Python debug tabs).
+- **Command Line Access** — Trigger the AI instantly via `Ctrl + /` for a HUD-style interaction that doesn't break your terminal focus.
+- **Multi-Tab Reasoning** — Aria can synthesize information across an entire Tab Island to compare documentation or troubleshoot errors.
+- **Video Analysis** — Native YouTube integration allows the AI to summarize technical tutorials or find specific moments in coding deep-dives.
+- **Local File & Vision** — Upload screenshots of CLI errors or local PDFs directly for OCR analysis and instant debugging.
+- **Privacy-first Design** — Operates via a modular architecture with no-logging policies and an optional anonymous proxy for AI queries.
 
 ### Pre-defined Bookmark Bar
 
-CrabWithClawOS ships Brave with an organized bookmarks toolbar:
+CrabWithClawOS ships Opera with an organized bookmarks toolbar:
 
 **📂 AI Hubs**
 - ClawHub — `https://clawhub.io` (or relevant OpenClaw hub URL)
@@ -715,5 +715,4 @@ brave-browser zen-browser
 ***
 
 *CrabWithClawOS: Where every terminal has claws, and every model has a key.* 🦀🔑
-
 
