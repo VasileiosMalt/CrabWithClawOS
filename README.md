@@ -1,4 +1,4 @@
-# 🦀 CrabWithClawOS — Complete Debian-Based Distribution Blueprint
+# 🦀 OpenClawOS — Complete Debian-Based Distribution Blueprint
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/CrabWithClawOS.png" alt="CrabWithClawOS" width="800" height="450">
@@ -12,7 +12,7 @@ A custom **Debian Bookworm**-based Linux distribution engineered for AI CLI codi
 
 ### Hardware Requirements
 
-CrabWithClawOS targets AI-focused workloads, so requirements exceed standard [Debian minimums](https://invgate.com/itdb/debian-12-bookworm).
+OpenClawOS targets AI-focused workloads, so requirements exceed standard [Debian minimums](https://invgate.com/itdb/debian-12-bookworm).
 
 | Tier | CPU | RAM | Storage | GPU | Use Case |
 |------|-----|-----|---------|-----|----------|
@@ -49,11 +49,11 @@ CrabWithClawOS targets AI-focused workloads, so requirements exceed standard [De
 
 ## 2. Build System: Debian `live-build`
 
-CrabWithClawOS is built using Debian's official [live-build](https://live-team.pages.debian.net/live-manual/html/live-manual.en.html) toolchain:
+OpenClawOS is built using Debian's official [live-build](https://live-team.pages.debian.net/live-manual/html/live-manual.en.html) toolchain:
 
 ```bash
 sudo apt install live-build debootstrap squashfs-tools xorriso grub-efi-amd64-bin
-mkdir -p crabwithclawos && cd crabwithclawos
+mkdir -p OpenClawOS && cd OpenClawOS
 
 lb config -d bookworm \
   --debian-installer live \
@@ -66,7 +66,7 @@ lb config -d bookworm \
 Package lists go in `config/package-lists/*.list.chroot`, dotfiles and configs in `config/includes.chroot_after_packages/etc/skel/`, and [post-install scripts](https://debian-live-config.readthedocs.io/en/latest/custom.html) in `config/hooks/`.
 
 ### Installer
-- **[Calamares](https://habr.com/en/articles/654755/)** — GUI installer branded for CrabWithClawOS (crab+claw logo, slideshow explaining the AI tool stack)
+- **[Calamares](https://habr.com/en/articles/654755/)** — GUI installer branded for OpenClawOS (crab+claw logo, slideshow explaining the AI tool stack)
 - **First-boot wizard**: Select GPU vendor → install appropriate drivers → select AI tool preset (Minimal / Full / Local-only) → configure API keys via encrypted keyring
 
 ***
@@ -118,9 +118,9 @@ Package lists go in `config/package-lists/*.list.chroot`, dotfiles and configs i
 
 ## 4. Free LLM Provider Integration
 
-All tools listed above support OpenAI-compatible APIs, meaning they work with every free provider listed below via LiteLLM or direct configuration. CrabWithClawOS ships with a pre-configured `crab-keys` system and LiteLLM proxy config for all of these:
+All tools listed above support OpenAI-compatible APIs, meaning they work with every free provider listed below via LiteLLM or direct configuration. OpenClawOS ships with a pre-configured `crab-keys` system and LiteLLM proxy config for all of these:
 
-### Free Providers — Pre-configured in CrabWithClawOS
+### Free Providers — Pre-configured in OpenClawOS
 
 | Provider | Free Tier Limits | Key Models | API Key URL |
 |----------|-----------------|------------|-------------|
@@ -167,7 +167,7 @@ All tools listed above support OpenAI-compatible APIs, meaning they work with ev
 ### LiteLLM Configuration (Pre-installed)
 
 ```yaml
-# /etc/crabwithclawos/litellm_config.yaml
+# /etc/OpenClawOS/litellm_config.yaml
 model_list:
   - model_name: "free/deepseek-r1"
     litellm_params:
@@ -196,7 +196,7 @@ model_list:
 
 ## 5. Pre-installed Claude Code Skills & CLAUDE.md
 
-Claude Code skills are markdown files stored in `~/.claude/skills/` that extend Claude's capabilities. CrabWithClawOS ships with a curated selection [pre-installed](https://github.com/VoltAgent/awesome-claude-skills):
+Claude Code skills are markdown files stored in `~/.claude/skills/` that extend Claude's capabilities. OpenClawOS ships with a curated selection [pre-installed](https://github.com/VoltAgent/awesome-claude-skills):
 
 ### Official Anthropic Skills (Pre-installed)
 
@@ -259,13 +259,13 @@ These advanced skills by muratcankoylan teach Claude how to handle context effec
 
 ### Global CLAUDE.md (Pre-configured)
 
-CrabWithClawOS ships with a [global CLAUDE.md](https://code.claude.com/docs/en/skills) optimized for the distro:
+OpenClawOS ships with a [global CLAUDE.md](https://code.claude.com/docs/en/skills) optimized for the distro:
 
 ```markdown
-# CrabWithClawOS Global Project Context
+# OpenClawOS Global Project Context
 
 ## Environment
-- OS: CrabWithClawOS (Debian Bookworm-based)
+- OS: OpenClawOS (Debian Bookworm-based)
 - Shell: Zsh with Starship prompt
 - Editor: Neovim (LazyVim config) or Helix
 - Terminal: Ghostty/Kitty with Zellij multiplexer
@@ -311,7 +311,7 @@ Opera One is the most agentic, developer-forward AI browser for Linux in 2026:
 
 ### Pre-defined Bookmark Bar
 
-CrabWithClawOS ships Opera with an organized bookmarks toolbar:
+OpenClawOS ships Opera with an organized bookmarks toolbar:
 
 **📂 AI Hubs**
 - ClawHub — `https://clawhub.io` (or relevant OpenClaw hub URL)
@@ -358,11 +358,6 @@ CrabWithClawOS ships Opera with an organized bookmarks toolbar:
 - Claude Code Docs — `https://code.claude.com/docs/en/`
 - Ollama Models — `https://ollama.com/library`
 - LiteLLM Docs — `https://docs.litellm.ai/`
-
-**📂 CrabWithClawOS**
-- CrabWithClawOS GitHub — `https://github.com/crabwithclawos` (project repo)
-- CrabWithClawOS Docs — `https://crabwithclawos.dev/docs`
-- CrabWithClawOS Issues — `https://github.com/crabwithclawos/issues`
 
 ### Alternative Browser: [Zen Browser](https://zen-browser.app/release-notes/)
 
@@ -499,7 +494,7 @@ The entire visual stack (Starship, Neovim, Zellij icons, eza, yazi) requires Ner
 Debian's stock kernel is used for stability, with [AI-optimized sysctl](https://www.itprotoday.com/ai-machine-learning/how-linux-optimizes-ai-hardware-acceleration) settings:
 
 ```ini
-# /etc/sysctl.d/99-crabwithclawos.conf
+# /etc/sysctl.d/99-OpenClawOS.conf
 
 # Memory — keep AI processes in RAM
 vm.swappiness = 10
@@ -678,7 +673,7 @@ brave-browser zen-browser
 ### Phase 1: Foundation (Weeks 1–3)
 - Set up **[live-build](https://live-team.pages.debian.net/live-manual/html/live-manual.en.html)** environment on Debian Bookworm
 - Define all `*.list.chroot` package lists and Btrfs subvolumes
-- Calamares installer with **[CrabWithClawOS branding](https://habr.com/en/articles/654755/)**
+- Calamares installer with **[OpenClawOS branding](https://habr.com/en/articles/654755/)**
 
 ### Phase 2: AI Tool Stack (Weeks 4–6)
 - Build `crab-install` wrapper for all AI CLI tools
@@ -695,7 +690,7 @@ brave-browser zen-browser
 ### Phase 4: Media & Polish (Weeks 10–12)
 - CLI media tools (FFmpeg, SoX, SoupaWhisper) integration
 - Documentation site and automated ISO build via GitHub Actions
-- v1.0 release: **"CrabWithClawOS — The Pincer Edition"** 🦀
+- v1.0 release: **"OpenClawOS — The Pincer Edition"** 🦀
 
 ***
 
@@ -714,5 +709,5 @@ brave-browser zen-browser
 
 ***
 
-*CrabWithClawOS: Where every terminal has claws, and every model has a key.* 🦀🔑
+*OpenClawOS: The first AI-agent oriented Linux OS* 🦀
 
