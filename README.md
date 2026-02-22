@@ -13,6 +13,7 @@
 ### Latest Release (v1.0)
 You can download the hybrid ISO image (supporting both BIOS and UEFI boot) from SourceForge:
 - **[Download OpenClawOS from SourceForge](https://sourceforge.net/projects/openclawos/files/v1.0/)**
+- **[Direct Download Link](https://sourceforge.net/projects/openclawos/files/v1.0/openclawos-bookworm-amd64.hybrid.iso/download)**
 
 ### Requirements & Booting
 - **Architecture:** x86_64 (amd64) CPU.
@@ -71,7 +72,7 @@ After downloading the ISO, verify its integrity:
    ```bash
    openclawos-info
    ```
-2. **Patching:** If you encounter minor CLI tool issues, run the patch script:
+2. **Patching:** If you encounter minor CLI tool issues, download the `openclaws_patch.sh` when you have installed OpenClawOS in a disk, and then run the patch script:
    ```bash
    sed -i 's/\r//g' openclaws_patch.sh && chmod +x openclaws_patch.sh && sudo bash openclaws_patch.sh
    ```
