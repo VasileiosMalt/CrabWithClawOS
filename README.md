@@ -1,7 +1,7 @@
 # 🦀 OpenClawOS — AI-Native Debian Linux Distribution
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/CrabWithClawOS.png" alt="OpenClawOS" width="800">
+  <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/pics/Screenshot_1.png" alt="OpenClawOS" width="800">
 </p>
 
 **OpenClawOS** is a custom Debian Bookworm 12 (amd64) based Linux distribution engineered from the ground up for AI-driven development, LLM orchestration, and high-performance terminal workflows. It integrates a unified AI proxy, local inference engines, and the industry's most advanced CLI coding agents into a seamless, ready-to-use environment.
