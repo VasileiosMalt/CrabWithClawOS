@@ -4,7 +4,20 @@
   <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/CrabWithClawOS.png" alt="OpenClawOS" width="800">
 </p>
 
-**OpenClawOS** is a custom Debian Bookworm-based Linux distribution engineered from the ground up for AI-driven development, LLM orchestration, and high-performance terminal workflows. It integrates a unified AI proxy, local inference engines, and the industry's most advanced CLI coding agents into a seamless, ready-to-use environment.
+**OpenClawOS** is a custom Debian Bookworm 12 (amd64) based Linux distribution engineered from the ground up for AI-driven development, LLM orchestration, and high-performance terminal workflows. It integrates a unified AI proxy, local inference engines, and the industry's most advanced CLI coding agents into a seamless, ready-to-use environment.
+
+---
+
+## 📥 Download & Installation
+
+### Latest Release (v1.0)
+You can download the hybrid ISO image (supporting both BIOS and UEFI boot) from SourceForge:
+- **[Download OpenClawOS from SourceForge](https://sourceforge.net/projects/openclawos/files/v1.0/)**
+
+### Requirements & Booting
+- **Architecture:** x86_64 (amd64) CPU.
+- **RAM:** 4 GB minimum (8 GB+ recommended for heavy AI workloads).
+- **Booting:** Write the ISO to USB using `dd`, `Rufus`, `Balena Etcher`, or `Ventoy`.
 
 ---
 
@@ -23,15 +36,26 @@
 - **Tooling:** `lazygit`, `lazydocker`, `gh` (GitHub CLI), `jq`, `fd`, `ripgrep`, `bat`, `delta`, and `fzf`.
 
 ### 🏗️ Infrastructure & Runtimes
-- **Virtualization:** Docker (ce-stable) and Podman/Distrobox pre-installed.
+- **Base System:** Debian 12 "Bookworm" (Kernel 6.1) with full firmware bundles (Wi-Fi, Realtek, Atheros, Intel, Broadcom).
+- **Filesystems:** `btrfs`, `exfat`, `NTFS`, and `snapper` for snapshots.
+- **Virtualization:** Docker (with Buildx/Compose), Podman, Buildah, Skopeo, and Distrobox.
 - **Cloud & K8s:** `kubectl`, `helm`, `k9s`, and Tailscale mesh VPN integration.
 - **Runtimes:** **Node.js 22 LTS**, **Python 3.12+**, **Go 1.23**, **Rust (Stable)**, **Bun**, and **uv**.
 
-### 🎨 Desktop Environment
-- **Primary:** **XFCE4** — Lightweight, stable, and highly responsive.
+### 🎨 Desktop & Browsers
+- **Primary:** **XFCE4** (Xorg) — Lightweight, stable, and highly responsive.
 - **Experimental:** **Hyprland** (Wayland) — Dynamic tiling with Waybar and custom blur/gaps.
+- **Web Browsers:** **Firefox ESR** (Default), **Brave Browser**, and **Opera** (Pre-installed with official repositories).
 - **Branding:** Custom OpenClawOS wallpapers and "Arc-Dark" / "Papirus" theme integration.
+- **Media:** VLC, LibreOffice, GParted, Evince, Mousepad, Ristretto.
 
+---
+
+## 🛡️ Verification & Safety
+
+After downloading the ISO, verify its integrity:
+- **SHA256:** `sha256sum openclawos-*.hybrid.iso` (compare with `.sha256` file)
+- **MD5:** `md5sum openclawos-*.hybrid.iso` (compare with `.md5` file)
 
 ---
 
@@ -47,15 +71,19 @@
    ```bash
    openclawos-info
    ```
-2. **Setup API Keys:** Export your keys to use the LiteLLM gateway:
+2. **Patching:** If you encounter minor CLI tool issues, run the patch script:
+   ```bash
+   sed -i 's/\r//g' openclaws_patch.sh && chmod +x openclaws_patch.sh && sudo bash openclaws_patch.sh
+   ```
+3. **Setup API Keys:** Export your keys to use the LiteLLM gateway:
    ```bash
    export ANTHROPIC_API_KEY=sk-ant-...
    export GEMINI_API_KEY=...
    export OPENAI_API_KEY=sk-...
    ```
-3. **LiteLLM Proxy:** Edit `/etc/openclawos/litellm_config.yaml` to manage your model routing.
-4. **Ollama:** Manage local models using `ollama run <model>` or `ollama list`.
-5. **Environment:** Use the global `CLAUDE.md` in your home directory to set context for AI agents.
+4. **LiteLLM Proxy:** Edit `/etc/openclawos/litellm_config.yaml` to manage your model routing.
+5. **Ollama:** Manage local models using `ollama run <model>` or `ollama list`.
+6. **Environment:** Use the global `CLAUDE.md` in your home directory to set context for AI agents.
 
 ### AI Service Management
 - **LiteLLM Proxy:** `sudo systemctl status litellm` (Service on port 4000)
@@ -67,14 +95,16 @@
 
 | Category | Tools |
 |----------|-------|
-| **AI Agents** | `claude-code`, `gemini-cli`, `aider`, `opencode-ai`, `sgpt`, `fabric`, `llm`, `codex` |
-| **Inference** | `Ollama`, `LiteLLM`, `huggingface-cli` |
-| **Dev Tools** | `git`, `lazygit`, `gh`, `docker`, `podman`, `distrobox`, `tailscale` |
+| **AI Agents** | `claude-code`, `gemini-cli`, `aider`, `opencode-ai`, `sgpt`, `fabric`, `llm`, `codex`, `open-webui` |
+| **Inference** | `Ollama`, `LiteLLM`, `huggingface-cli`, `jupyter` |
+| **Dev Tools** | `git`, `lazygit`, `gh`, `docker`, `podman`, `buildah`, `skopeo`, `distrobox`, `tailscale` |
 | **K8s** | `kubectl`, `helm`, `k9s` |
-| **Terminal** | `Zsh`, `Starship`, `Zellij`, `Ghostty`, `Kitty`, `Yazi`, `zoxide`, `mise` |
+| **Terminal** | `Zsh`, `Starship`, `Zellij`, `Ghostty`, `Kitty`, `Yazi`, `zoxide`, `mise`, `eza`, `delta`, `just` |
 | **Editors** | `Neovim`, `Helix`, `Vim`, `Nano` |
-| **Media** | `FFmpeg`, `SoX`, `ImageMagick`, `GraphicsMagick`, `MLT-7` |
-| **Monitoring** | `btop`, `nvtop`, `iotop`, `sysstat`, `bandwhich` |
+| **Media** | `FFmpeg`, `SoX`, `ImageMagick`, `GraphicsMagick`, `MLT-7`, `VLC` |
+| **Monitoring** | `btop`, `nvtop`, `iotop`, `sysstat`, `bandwhich`, `htop`, `baobab` |
+| **Filesystems** | `btrfs-progs`, `exfat-fuse`, `ntfs-3g`, `snapper` |
+| **Browsers** | `Firefox ESR`, `Brave`, `Opera` |
 
 ---
 
