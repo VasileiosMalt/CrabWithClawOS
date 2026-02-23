@@ -6,6 +6,7 @@
 
 **OpenClawOS** is a custom Debian Bookworm 12 (amd64) based Linux distribution engineered from the ground up for AI-driven development, LLM orchestration, and high-performance terminal workflows. It integrates a unified AI proxy, local inference engines, and the industry's most advanced CLI coding agents into a seamless, ready-to-use environment.
 
+*Note: This is an experimental effort for the formulation of an AI- and Agentic-oriented Linux Distro that would facilitate an optimal utilization of the OS env in agentic mode. There is also a heavy software toolkit of various functionalities (image and video editing, virtualization, containerazation, remote connections, CI/CD and more) whose tools can, nevertheless, be operationalised through terminal (given that agentic ai will be using them)**
 ---
 
 ## 📥 Download & Installation
@@ -72,7 +73,7 @@ After downloading the ISO, verify its integrity:
    ```bash
    openclawos-info
    ```
-2. **Patching:** If you encounter minor CLI tool issues, download the `openclaws_patch.sh` when you have installed OpenClawOS in a disk, and then run the patch script:
+2. **Patching:** If you encounter minor CLI tool issues, download the `openclaws_patch.sh` when you have installed OpenClawOS in a disk, and then run the patch script (Highly recommended to run, if you don't trust it feel free to run an antivirus and scan it for vulnerabilities) :
    ```bash
    sed -i 's/\r//g' openclaws_patch.sh && chmod +x openclaws_patch.sh && sudo bash openclaws_patch.sh
    ```
@@ -105,7 +106,7 @@ After downloading the ISO, verify its integrity:
 | **Media** | `FFmpeg`, `SoX`, `ImageMagick`, `GraphicsMagick`, `MLT-7`, `VLC` |
 | **Monitoring** | `btop`, `nvtop`, `iotop`, `sysstat`, `bandwhich`, `htop`, `baobab` |
 | **Filesystems** | `btrfs-progs`, `exfat-fuse`, `ntfs-3g`, `snapper` |
-| **Browsers** | `Firefox ESR`, `Brave`, `Opera` |
+| **Browsers** | `BrowserOS`, `Firefox ESR`, `Brave`, `Opera` |
 
 ---
 
