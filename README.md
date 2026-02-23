@@ -1,4 +1,4 @@
-# 🦀 OpenClawOS — AI-Native Debian Linux Distribution
+# 🦀 OpenClawOS - The first AI-agent-oriented Debian Linux Distribution
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/pics/Screenshot_1.png" alt="OpenClawOS" width="800">
