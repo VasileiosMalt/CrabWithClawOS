@@ -122,6 +122,6 @@ After downloading the ISO, verify its integrity:
 ---
 
 <p align="center">
-  *OpenClawOS: The first AI-agent oriented Linux OS* 🦀
+  <em>OpenClawOS: The first AI-agent oriented Linux OS</em> 🦀
   <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/wallpapers/OpenClawOS_2.png" alt="OpenClawOS" width="800">
 </p>
