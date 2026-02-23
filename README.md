@@ -1,12 +1,23 @@
-# 🦀 OpenClawOS - The first AI-agent-oriented Debian Linux Distribution
+# 🦀 OpenClawOS - The first AI-agent-oriented Debian Linux Distribution!
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/VasileiosMalt/CrabWithClawOS/refs/heads/main/pics/Screenshot_1.png" alt="OpenClawOS" width="800">
 </p>
 
-**OpenClawOS** is a custom Debian Bookworm 12 (amd64) based Linux distribution engineered from the ground up for AI-driven development, LLM orchestration, and high-performance terminal workflows. It integrates a unified AI proxy, local inference engines, and the industry's most advanced CLI coding agents into a seamless, ready-to-use environment.
+**OpenClawOS** is a custom Debian Bookworm 12 (amd64) based Linux distribution engineered from the ground up for AI-driven workflows, LLM orchestration, and high-performance terminal workflows. It integrates a unified AI proxy, local inference engines, and the industry's most advanced CLI coding agents into a seamless, ready-to-use environment.
 
-*Note: This is an experimental effort for the formulation of an AI- and Agentic-oriented Linux Distro that would facilitate an optimal utilization of the OS env in agentic mode. There is also a heavy software toolkit of various functionalities (image and video editing, virtualization, containerazation, remote connections, CI/CD and more) whose tools can, nevertheless, be operationalised through terminal (given that agentic ai will be using them)**
+**Note: This is an experimental effort for the formulation of an AI- and Agentic-oriented Linux Distro that would facilitate an optimal utilization of the OS env in agentic mode. There is also a heavy software toolkit of various functionalities (image and video editing, virtualization, containerazation, remote connections, CI/CD and more) whose tools can, nevertheless, be operationalised through terminal (given that agentic ai will be using them)**
+
+---
+
+### First of all: Why XFCE for an AI‑native Linux Desktop Distro?
+
+- 🧠 More headroom: lower RAM/CPU/VRAM overhead than GNOME/KDE, leaving extra computational budget for local LLMs, vector DBs etc.
+- 🧱 Predictable UX: conservative, “boringly stable” evolution, so tuned AI images and workflows keep behaving the same across updates.
+- 🛠️ Precise tuning: easy to trim services, panels and keybindings so you can have an opinionated AI layout and keep idle usage comfortably low.
+- 🧩 Tiling‑friendly: plays well with tiling or hybrid WMs, giving near‑WM efficiency while retaining a simple GUI for displays, input and power controls.
+- 🐧 Great even on weak hardware: stays responsive on low‑RAM, low‑CPU for usage of smallLMs.
+
 ---
 
 ## 📥 Download & Installation
@@ -90,15 +101,6 @@ After downloading the ISO, verify its integrity:
 ### AI Service Management
 - **LiteLLM Proxy:** `sudo systemctl status litellm` (Service on port 4000)
 - **Ollama:** `sudo systemctl status ollama` (Service on port 11434)
-
----
-### Why XFCE for an AI‑native Linux Desktop Distro?
-
-- 🧠 More headroom: lower RAM/CPU/VRAM overhead than GNOME/KDE, leaving extra computational budget for local LLMs, vector DBs etc.
-- 🧱 Predictable UX: conservative, “boringly stable” evolution, so tuned AI images and workflows keep behaving the same across updates.
-- 🛠️ Precise tuning: easy to trim services, panels and keybindings so you can have an opinionated AI layout and keep idle usage comfortably low.
-- 🧩 Tiling‑friendly: plays well with tiling or hybrid WMs, giving near‑WM efficiency while retaining a simple GUI for displays, input and power controls.
-- 🐧 Great even on weak hardware: stays responsive on low‑RAM, low‑CPU.
 
 ---
 
