@@ -92,6 +92,15 @@ After downloading the ISO, verify its integrity:
 - **Ollama:** `sudo systemctl status ollama` (Service on port 11434)
 
 ---
+### Why XFCE for an AI‑native Linux Desktop Distro?
+
+- 🧠 More headroom: lower RAM/CPU/VRAM overhead than GNOME/KDE, leaving extra computational budget for local LLMs, vector DBs etc.
+- 🧱 Predictable UX: conservative, “boringly stable” evolution, so tuned AI images and workflows keep behaving the same across updates.
+- 🛠️ Precise tuning: easy to trim services, panels and keybindings so you can have an opinionated AI layout and keep idle usage comfortably low.
+- 🧩 Tiling‑friendly: plays well with tiling or hybrid WMs, giving near‑WM efficiency while retaining a simple GUI for displays, input and power controls.
+- 🐧 Great even on weak hardware: stays responsive on low‑RAM, low‑CPU.
+
+---
 
 ## 📋 Complete Tool Stack
 
